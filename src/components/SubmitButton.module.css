@@ -7,6 +7,7 @@
   outline-offset: 4px;
   transition: filter 250ms;
 }
+
 .shadow {
   position: absolute;
   top: 0;
@@ -22,6 +23,7 @@
     600ms
     cubic-bezier(.3, .7, .4, 1);
 }
+
 .edge {
   position: absolute;
   top: 0;
@@ -37,6 +39,7 @@
     hsl(340deg 100% 16%) 100%
   );
 }
+
 .front {
   display: block;
   position: relative;
@@ -52,9 +55,11 @@
     600ms
     cubic-bezier(.3, .7, .4, 1);
 }
+
 .pushable:hover {
   filter: brightness(110%);
 }
+
 .pushable:hover .front {
   transform: translateY(-6px);
   transition:
@@ -62,10 +67,12 @@
     250ms
     cubic-bezier(.3, .7, .4, 1.5);
 }
+
 .pushable:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
 }
+
 .pushable:hover .shadow {
   transform: translateY(4px);
   transition:
@@ -73,10 +80,12 @@
     250ms
     cubic-bezier(.3, .7, .4, 1.5);
 }
+
 .pushable:active .shadow {
   transform: translateY(1px);
   transition: transform 34ms;
 }
+
 .pushable:focus:not(:focus-visible) {
   outline: none;
 }
