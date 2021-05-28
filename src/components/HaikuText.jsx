@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styles from './HaikuText.module.css';
 import { countSyllables } from "../helpers/syllables";
+import SubmitButton from './SubmitButton';
 
 
 export default function HaikuText (){
@@ -38,8 +39,9 @@ export default function HaikuText (){
         className={styles.textBox}
       />
       <div>
-        {counts.map(count => <p>{count}</p>)}
+        {counts.map((count, i) => <p key={i} >{count}</p>)}
       </div>
+      <SubmitButton />
     </>
   )
 }
