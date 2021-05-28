@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styles from './HaikuText.module.css';
-import { hyphenate } from "hyphen/en";
+import { countSyllables } from "../helpers/syllables";
 
 
 export default function HaikuText (){
   const [text, setText] = useState('');
-  const [hyphenatedText, setHyphenatedText] = useState('');
+  const [counts, setCounts] = useState([0, 0, 0]);
 
   useEffect(() => {
-    hyphenate(text, { hyphenChar: "%" })
-    .then(result => {
-      setHyphenatedText(() => result);
-      console.log(result);
-    })
+
+    console.log('start:', text)
+    
+    const newCounts = text.trim().split('\n')
+    .map(line => countSyllables(line));
+
+    setCounts(() => [...newCounts])
+
   }, [text]);
 
   const handleChange = event => {
@@ -27,12 +30,16 @@ export default function HaikuText (){
         variant="outlined"
         // label="Multiline"
         // defaultValue="Default Value"
+        fullWidth
         multiline
         rows={3}
         value={text}
         onChange={handleChange}
+        className={styles.textBox}
       />
-      <p>{hyphenatedText}</p>
+      <div>
+        {counts.map(count => <p>{count}</p>)}
+      </div>
     </>
   )
 }
