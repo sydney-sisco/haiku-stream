@@ -56,3 +56,19 @@ export function countSyllables(line){
 
   return syllableCount;
 }
+
+export function validSyllables(counts) {
+  if(!counts) {
+    return false;
+  }
+
+  if(counts.length !== 3) {
+    return false;
+  }
+
+  if(counts[0] !== 5 || counts[1] !== 7 || counts[2] !== 5) {
+    return false;
+  }
+
+  return true;
+}
