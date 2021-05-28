@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styles from './HaikuText.module.css';
-import { countSyllables } from "../helpers/syllables";
+import { countSyllables, validSyllables } from "../helpers/syllables";
 import SubmitButton from './SubmitButton';
 
 
 export default function HaikuText (){
   const [text, setText] = useState('');
   const [counts, setCounts] = useState([0, 0, 0]);
+  const [valid, setValid] = useState(false);
 
   useEffect(() => {
 
@@ -17,6 +18,7 @@ export default function HaikuText (){
     .map(line => countSyllables(line));
 
     setCounts(() => [...newCounts])
+    setValid(() => validSyllables(newCounts));
 
   }, [text]);
 
@@ -41,7 +43,7 @@ export default function HaikuText (){
       <div>
         {counts.map((count, i) => <p key={i} >{count}</p>)}
       </div>
-      <SubmitButton />
+      {valid && <SubmitButton />}
     </>
   )
 }
